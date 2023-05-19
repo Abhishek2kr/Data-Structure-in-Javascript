@@ -22,6 +22,30 @@ class LinkedList {
        }
        this.length++;
     }
+
+    pop() {
+        if(this.length === 0) {
+            return null;
+        }
+
+        if(this.length === 1) {
+            this.head = null;
+            const poppedNode = this.tail;
+            this.tail = null;
+            this.length--;
+            return poppedNode;
+        }
+
+        let current = this.head;
+        let prev;
+        while (current.next) {
+          prev = current;
+          current = current.next;
+        }
+        prev.next = null;
+        this.tail = prev;
+        this.length--;
+    }
 }
 
 // Init
@@ -30,5 +54,9 @@ const list = new LinkedList();
 list.push(23);
 list.push(34);
 list.push(45);
+// Display
+console.log(list);
+// Pop
+list.pop();
 // Display
 console.log(list);
